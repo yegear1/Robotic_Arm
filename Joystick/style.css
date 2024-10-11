@@ -26,7 +26,7 @@ main {
     display: grid;
     grid-template-rows: 10vw 10vw 10vw;
 
-    border: 1px solid #fff;
+    
 }
 
 .center {
@@ -34,12 +34,17 @@ main {
     justify-content: center;
     align-items: center;
 
-    border: 1px solid #fff;
+    
 }
 
 .column3 {
     display: grid;
     grid-template-columns: 10vw 10vw 10vw;
     
-    border: 1px solid #fff;
+   
+}
+
+.colum5{
+    display: grid;
+    grid-template-columns: 10vw 5vw 10vw 5vw 10vw;
 }
