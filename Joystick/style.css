@@ -11,9 +11,24 @@ body{
 
     height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+}
+
+header{
+    display: grid;
+    grid-template-columns: 25vw 10vw 10vw 10vw 10vw 35vw;
+    grid-template-rows: 6vw;
+    margin-bottom: 2vw;
+}
+
+header .button{
+    width: 5vw;
+    height: 3vw;
+    border-radius: 1vw;
+    font-size: 1.5vw;
+
+    color: #000;
+    background: #fff;
 }
 
 main {
@@ -47,4 +62,69 @@ main {
 .colum5{
     display: grid;
     grid-template-columns: 10vw 5vw 10vw 5vw 10vw;
+}
+
+.directional{
+    background: #fff;
+    border-radius: 15vw;
+
+}
+
+.directional button{
+    background: none;
+    border: none;
+    font-size: 3vw;
+}
+
+button{
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    cursor: pointer;
+}
+
+.slider{
+    transform: rotate(90deg);
+
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 20vw;
+    height: 6vw;
+    border-radius: 3vw;
+
+    outline: none;
+    background: #fff;
+}
+
+.slider::-webkit-slider-thumb{
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 6vw;
+    height: 6vw;
+    border-radius: 3vw;
+
+    background: #707070;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb{
+
+    width: 6vw;
+    height: 6vw;
+    border-radius: 3vw;
+
+    background: #707070;
+    cursor: pointer;
+}
+
+.buttons button{
+    font-size: 4vw;
+    border-radius: 5vw;
 }
