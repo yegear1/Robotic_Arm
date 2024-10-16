@@ -1,6 +1,18 @@
 
-//Outra maquina = alterar o IP
-const URL = "http://10.0.2.240:3000/"
+const URL = "http://127.0.1.1:3000/";
+
+async function sendRequest(value, response) {
+    try {
+        await fetch(`${URL}${value}`, {
+            mode: 'no-cors',
+        });
+    
+        await response();
+    } catch {
+        alert("Servidor Desligado")
+    }
+};
+
 
 function toggleFullScreen(){
     if(document.fullscreenEnabled){
@@ -23,18 +35,30 @@ function createControl() {
 
     let value = 0;
 
+    let up = false;
+
     for (let button of buttons) {
 
         let buttonValue = ++value;
 
         button.onmousedown = () => {
             console.log(`Botão ${buttonValue} pressionado`);
+        
+            sendRequest(`button=${buttonValue}`, () => {
+                if(up)sendRequest(`button=0`, () => {});
+            });
+
+            up = false;
         };
         
         button.ontouchstart = button.onmousedown;
         
         button.onmouseup = () => {
             console.log(`Botão ${buttonValue} solto`);
+            
+            up = true
+
+            sendRequest(`button=0`, () => {})
         };
         
         button.ontouchend = button.onmouseup;
