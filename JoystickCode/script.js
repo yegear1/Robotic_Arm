@@ -1,5 +1,4 @@
-
-const URL = "http://127.0.1.1:3000/";
+const URL = "./";
 
 async function sendRequest(value, response) {
     try {

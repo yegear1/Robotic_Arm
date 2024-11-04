@@ -1,13 +1,13 @@
-#include <ESP32SERVO.h>
+#include <ESP32Servo.h>
 
 typedef void Function();
 
 Function *move;
 
-Servo servo_motor1;
-Servo servo_motor2;
-Servo servo_motor3;
-Servo servo_motor4;
+Servo servo_motor_1;
+Servo servo_motor_2;
+Servo servo_motor_3;
+Servo servo_motor_4;
 
 int speed = 10;
 int cycle = 2;
