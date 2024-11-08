@@ -9,8 +9,8 @@
 #define LED_BUILTIN 2
 
 const char* host = "esp32";
-const char* ssid = "Y"; 
-const char* password = "12345678"; 
+const char* ssid = "Odim"; 
+const char* password = "mrosa123"; 
 
 WebServer server(80);
 
@@ -33,11 +33,15 @@ Route routes[] = {
 };
 
 void setup(void) { 
+
+  attachMotors();
+
   pinMode(LED_BUILTIN, OUTPUT);
   Serial.begin(115200);
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
 
+  //Esperando conexão
   while (WiFi.status() != WL_CONNECTED) {
     digitalWrite(LED_BUILTIN, LOW);
     delay(500);
@@ -59,6 +63,8 @@ void setup(void) {
   server.on("/button=0", HTTP_GET, []() {
     digitalWrite(LED_BUILTIN, LOW);
 
+    move = standStill;
+
     server.sendHeader("Connection", "close");
     server.send(204);
   });
@@ -70,7 +76,7 @@ void setup(void) {
     server.on(routes[i].path, HTTP_GET, [&routes, i]() {
       digitalWrite(LED_BUILTIN, HIGH);
 
-      //move = routes[i].response;
+      move = routes[i].response;
 
       server.sendHeader("Connection", "close");
       server.send(204);
@@ -90,6 +96,9 @@ void setup(void) {
 
 void loop(void) {
   server.handleClient();
-  delay(2);
+
+  move();
+
+  delay(cycle); // Permite a CPU para trocar para outras tarefas
 
 } 
