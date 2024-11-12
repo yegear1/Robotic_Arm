@@ -12,18 +12,19 @@ Servo servo_motor_4;
 int speed = 10;
 int cycle = 5;
 
-int counter_1 = 90;
-int counter_2 = 99;
-int counter_3 = 14;
-int counter_4 = 104;
+int counter_1 = 10; // Controla a garra
+int counter_2 = 99; // Levanta e abaixa o braço
+int counter_3 = 14; // Movimento frente e tras
+int counter_4 = 150;// Rotação esquerda e direita
 
-void standStill() {  
+// Função para manter os servos parados
+void standStill() {   
 }
 
 void attachMotors() {
   servo_motor_1.attach(5); // Controla a garra
   servo_motor_2.attach(23);// Levanta e abaixa o braço
-  servo_motor_3.attach(13);// Movimento frente e tras
+  servo_motor_3.attach(22);// Movimento frente e tras
   servo_motor_4.attach(19);// Rotação esquerda e direita
 
   move = standStill;
@@ -45,7 +46,7 @@ void monitor() { // Monitorar o posiconamento de cada servo
 }
 
 void closedClaw() {
- if(counter_1 <=180) {
+ if(counter_1 <=13) {
   servo_motor_1.write(++counter_1);
  }
 
@@ -61,7 +62,7 @@ void openClaw() {
 }
 
 void raiseArm() {
-  if(counter_2 >= 0) {
+  if(counter_2 <= 138) {
     servo_motor_2.write(++counter_2);
   }
 
@@ -69,15 +70,15 @@ void raiseArm() {
 }
 
 void lowerArm() {
-  if(counter_2 >= 0) {
-    servo_motor_2.write(--counter_3);
+  if(counter_2 >= 30) {
+    servo_motor_2.write(--counter_2);
   }
 
   monitor();
 }
 
 void strechArm() {
-  if(counter_3 <= 180) {
+  if(counter_3 <= 51) {
     servo_motor_3.write(++counter_3);
   }
 
